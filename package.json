@@ -1,0 +1,26 @@
+{
+    "name": "ld39",
+    "version": "0.0.1",
+    "description": "LD39 entry for Azziliz and Thyshimrod",
+    "keywords": [
+        "game",
+        "ludum dare",
+        "ld39"
+    ],
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/azziliz/ld39.git"
+    },
+    "engines": {
+        "node": ">=5.0.0"
+    },
+    "contributors": [
+        {
+            "name": "azziliz"
+        },
+        {
+            "name": "thyshimrod"
+        }
+    ]
+}

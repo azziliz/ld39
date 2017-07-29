@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{f0c983f2-ecd3-4978-bbd6-335b25584b42}</ProjectGuid>
+    <ProjectHome />
+    <ProjectView>ProjectFiles</ProjectView>
+    <StartupFile>server.js</StartupFile>
+    <WorkingDirectory>.</WorkingDirectory>
+    <OutputPath>.</OutputPath>
+    <ProjectTypeGuids>{3AF33F2E-1136-4D97-BBB7-1795711AC8B8};{349c5851-65df-11da-9384-00065b846f21};{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}</ProjectTypeGuids>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+    <NodejsPort>15881</NodejsPort>
+    <StartWebBrowser>True</StartWebBrowser>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
+  <ItemGroup>
+    <Compile Include="src\js\client\animation.js" />
+    <Compile Include="src\js\client\base.js" />
+    <Compile Include="src\js\client\client.js" />
+    <Compile Include="src\js\client\event.js" />
+    <Compile Include="src\js\client\input.js" />
+    <Compile Include="src\js\client\renderer.js" />
+    <Compile Include="src\js\client\ui.js" />
+    <Compile Include="src\js\core\character.js" />
+    <Compile Include="src\js\core\clientbase.js" />
+    <Compile Include="src\js\core\constants.js" />
+    <Compile Include="src\js\core\gameengine.js" />
+    <Compile Include="src\js\core\level.js" />
+    <Compile Include="src\js\core\tile.js" />
+    <Compile Include="src\js\core\utils.js" />
+    <Compile Include="src\js\pages\crawler.js" />
+    <Compile Include="src\js\pages\editor.js" />
+    <Compile Include="src\js\pages\ld39.js" />
+    <Compile Include="src\js\pages\pathfinding.js" />
+    <Content Include="data\locale\en.js" />
+    <Content Include="data\locale\fr.json" />
+    <Content Include="data\staticlevels\level6.json" />
+    <Content Include="data\staticlevels\level7.json" />
+    <Content Include="data\tmp.json" />
+    <Content Include="index.html" />
+    <Content Include="package.json" />
+    <Content Include="data\reference\assets.js" />
+    <Content Include="data\staticlevels\level1.js" />
+    <Content Include="data\staticlevels\level2.json" />
+    <Content Include="data\staticlevels\level3.json" />
+    <Content Include="data\staticlevels\level4.json" />
+    <Content Include="data\staticlevels\level5.json" />
+    <Content Include="README.md" />
+    <Compile Include="server.js" />
+    <Content Include="src\img\murmures.png" />
+    <Content Include="src\css\client.css" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="data\" />
+    <Folder Include="data\locale\" />
+    <Folder Include="data\staticlevels\" />
+    <Folder Include="data\reference\" />
+    <Folder Include="src\" />
+    <Folder Include="src\css\" />
+    <Folder Include="src\img\" />
+    <Folder Include="src\js\" />
+    <Folder Include="src\js\core\" />
+    <Folder Include="src\js\client\" />
+    <Folder Include="src\js\pages\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <!--Do not delete the following Import Project.  While this appears to do nothing it is a marker for setting TypeScript properties before our import that depends on them.-->
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="False" />
+  <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsTools.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:48022/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>True</UseCustomServer>
+          <CustomServerUrl>http://localhost:1337</CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}" User="">
+        <WebProjectProperties>
+          <StartPageUrl>
+          </StartPageUrl>
+          <StartAction>CurrentPage</StartAction>
+          <AspNetDebugging>True</AspNetDebugging>
+          <SilverlightDebugging>False</SilverlightDebugging>
+          <NativeDebugging>False</NativeDebugging>
+          <SQLDebugging>False</SQLDebugging>
+          <ExternalProgram>
+          </ExternalProgram>
+          <StartExternalURL>
+          </StartExternalURL>
+          <StartCmdLineArguments>
+          </StartCmdLineArguments>
+          <StartWorkingDirectory>
+          </StartWorkingDirectory>
+          <EnableENC>False</EnableENC>
+          <AlwaysStartWebServerOnDebug>False</AlwaysStartWebServerOnDebug>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>
