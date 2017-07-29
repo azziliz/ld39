@@ -16,14 +16,14 @@ murmures.InputHandler.prototype = {
             topLayer.addEventListener('mousedown', function (e) {
                 e.preventDefault(); // usually, keeping the left mouse button down triggers a text selection or a drag & drop.
                 instance.mouseIsDown = true;
-                let hoveredTile = instance.getHoveredTile(e.offsetX, e.offsetY);
-                if (e.button !== 2) {
-                    // event is a left click
-                    gameEngine.client.eventDispatcher.emitEvent('leftClickOnTile', hoveredTile);
-                } else {
-                    // event is a right click
-                    gameEngine.client.eventDispatcher.emitEvent('rightClickOnTile', hoveredTile);
-                }
+                //let hoveredTile = instance.getHoveredTile(e.offsetX, e.offsetY);
+                //if (e.button !== 2) {
+                //    // event is a left click
+                //    gameEngine.client.eventDispatcher.emitEvent('leftClickOnTile', hoveredTile);
+                //} else {
+                //    // event is a right click
+                //    gameEngine.client.eventDispatcher.emitEvent('rightClickOnTile', hoveredTile);
+                //}
             }, false);
             topLayer.addEventListener('mouseup', function (e) {
                 e.preventDefault();
@@ -31,21 +31,58 @@ murmures.InputHandler.prototype = {
             }, false);
             topLayer.addEventListener('mousemove', function (e) {
                 e.preventDefault(); // usually, keeping the left mouse button down triggers a text selection or a drag & drop.
-                let hoveredTile = instance.getHoveredTile(e.offsetX, e.offsetY);
-                if (instance.mouseMoveTarget.x !== hoveredTile.x || instance.mouseMoveTarget.y !== hoveredTile.y) {
-                    gameEngine.client.eventDispatcher.emitEvent('tileLeave', instance.mouseMoveTarget);
-                    gameEngine.client.eventDispatcher.emitEvent('tileEnter', hoveredTile);
-                    instance.mouseMoveTarget.x = hoveredTile.x;
-                    instance.mouseMoveTarget.y = hoveredTile.y;
-                    if (instance.mouseIsDown) {
-                        if (e.button !== 2) {
-                            // event is a left click
-                            gameEngine.client.eventDispatcher.emitEvent('leftClickOnTile', hoveredTile);
-                        } else {
-                            // event is a right click
-                            gameEngine.client.eventDispatcher.emitEvent('rightClickOnTile', hoveredTile);
-                        }
-                    }
+                //let hoveredTile = instance.getHoveredTile(e.offsetX, e.offsetY);
+                //if (instance.mouseMoveTarget.x !== hoveredTile.x || instance.mouseMoveTarget.y !== hoveredTile.y) {
+                //    gameEngine.client.eventDispatcher.emitEvent('tileLeave', instance.mouseMoveTarget);
+                //    gameEngine.client.eventDispatcher.emitEvent('tileEnter', hoveredTile);
+                //    instance.mouseMoveTarget.x = hoveredTile.x;
+                //    instance.mouseMoveTarget.y = hoveredTile.y;
+                //    if (instance.mouseIsDown) {
+                //        if (e.button !== 2) {
+                //            // event is a left click
+                //            gameEngine.client.eventDispatcher.emitEvent('leftClickOnTile', hoveredTile);
+                //        } else {
+                //            // event is a right click
+                //            gameEngine.client.eventDispatcher.emitEvent('rightClickOnTile', hoveredTile);
+                //        }
+                //    }
+                //}
+            }, false);
+            window.addEventListener('keydown', function (e) {
+                e.preventDefault();
+                switch (e.keyCode) {
+                    case 0x28: // "ArrowDown"
+                    case 0x62: // "Numpad2"
+                    case 0x4B:// "KeyK"
+                        // Do something for "down arrow" key press.
+                        gameEngine.client.eventDispatcher.emitEvent('moveHero', { x: 0, y: 1 });
+                        break;
+                    case 0x26: // "ArrowUp"
+                    case 0x68: // "Numpad8"
+                    case 0x49:// "KeyI"
+                        // Do something for "up arrow" key press.
+                        gameEngine.client.eventDispatcher.emitEvent('moveHero', { x: 0, y: -1 });
+                        break;
+                    case 0x25: // "ArrowLeft"
+                    case 0x64: // "Numpad4"
+                    case 0x4A:// "KeyJ"
+                        // Do something for "left arrow" key press.
+                        gameEngine.client.eventDispatcher.emitEvent('moveHero', { x: -1, y: 0 });
+                        break;
+                    case 0x27: // "ArrowRight"
+                    case 0x66: // "Numpad6"
+                    case 0x4C:// "KeyL"
+                        // Do something for "right arrow" key press.
+                        gameEngine.client.eventDispatcher.emitEvent('moveHero', { x: 1, y: 0 });
+                        break;
+                    //case "Enter":
+                    //    // Do something for "enter" or "return" key press.
+                    //    break;
+                    //case "Escape":
+                    //    // Do something for "esc" key press.
+                    //    break;
+                    default:
+                        return; // Quit when this doesn't handle the key event.
                 }
             }, false);
         }, false);

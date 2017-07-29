@@ -24,6 +24,13 @@ window.onload = function () {
         gameEngine.client.eventDispatcher.emitEvent('requestRenderFullEngine');
         gameEngine.client.uiBuilder.centerCrawlPanel();
     }, false);
+    window.addEventListener('moveHero', function (e) {
+        const currentPos = gameEngine.heros[0].position;
+        const newX = currentPos.x + e.detail.x;
+        const newY = currentPos.y + e.detail.y;
+        gameEngine.heros[0].move(newX, newY);
+        gameEngine.client.eventDispatcher.emitEvent('requestRenderPartialEngine');
+    }, false);
     
     gameEngine.client.eventDispatcher.emitEvent('requestTileset');
 };

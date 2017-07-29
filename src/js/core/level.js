@@ -59,11 +59,6 @@ murmures.Level.prototype = {
             for (let x = 0; x < this.width; x++) {
                 this.tiles[y][x] = new murmures.Tile(x, y);
                 this.tiles[y][x].build(src.tiles[y][x]);
-                if (this.tiles[y][x].charId !== '') {
-                    let mob = new murmures.Character();
-                    mob.build(this.tiles[y][x], this.tiles[y][x].charId, 1);
-                    this.mobs.push(mob);
-                }
             }
         }
     },
