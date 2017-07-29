@@ -35,9 +35,100 @@ murmures.Level = function () {
     this.tiles = [];
     /** @type {Array.<murmures.Character>} */
     this.mobs = [];
+    this.rooms = [];
 };
 
 murmures.Level.prototype = {
+
+    generateDoors : function(r1,r2){
+        if(r1.x<r2.x && r1.y < r2.y){
+            let t = new murmures.Tile();
+            t.x = r1.x + Math.floor(r1.height/2);
+            t.y = r1.y + r1.height;
+            t.groundId = "_b1_01_floor_of_a_room.rl1";
+            t.state = murmures.C.TILE_HIGHLIGHTED;
+            t.propId = "_b1_12_dngn_open_door.rl2";
+            r1.tiles.push(t);
+
+            t = new murmures.Tile();
+            t.x = r2.x -1 ;
+            t.y = r1.y + Math.floor(r2.height/2);
+            t.groundId = "_b1_01_floor_of_a_room.rl1";
+            t.state = murmures.C.TILE_HIGHLIGHTED;
+            t.propId = "_b1_12_dngn_open_door.rl2";
+            r2.tiles.push(t);
+        }else if(r1.x>r2.x && r1.y < r2.y){
+            let t = new murmures.Tile();
+            t.x = r1.x + Math.floor(r1.height/2);
+            t.y = r1.y + r1.height;
+            t.groundId = "_b1_01_floor_of_a_room.rl1";
+            t.state = murmures.C.TILE_HIGHLIGHTED;
+            t.propId = "_b1_12_dngn_open_door.rl2";
+            r1.tiles.push(t);
+
+            t = new murmures.Tile();
+            t.x = r2.x + r2.height ;
+            t.y = r2.y + Math.floor(r2.height/2);
+            t.groundId = "_b1_01_floor_of_a_room.rl1";
+            t.state = murmures.C.TILE_HIGHLIGHTED;
+            t.propId = "_b1_12_dngn_open_door.rl2";
+            r2.tiles.push(t);
+        }else if(r1.x>=r2.x && r1.y >= r2.y){
+            let t = new murmures.Tile();
+            t.x = r1.x + Math.floor(r1.height/2);
+            t.y = r1.y -1;
+            t.groundId = "_b1_01_floor_of_a_room.rl1";
+            t.state = murmures.C.TILE_HIGHLIGHTED;
+            t.propId = "_b1_12_dngn_open_door.rl2";
+            r1.tiles.push(t);
+
+            t = new murmures.Tile();
+            t.x = r2.x + r2.height;
+            t.y = r2.y + Math.floor(r2.height/2);
+            t.groundId = "_b1_01_floor_of_a_room.rl1";
+            t.state = murmures.C.TILE_HIGHLIGHTED;
+            t.propId = "_b1_12_dngn_open_door.rl2";
+            r2.tiles.push(t);
+        }
+
+
+    },
+
+    generate : function(){
+      for(let i=0;i<5;i++){
+          let r = new murmures.Room();
+          r.x =  Math.floor((Math.random() * 50) + 1);
+          r.y = Math.floor((Math.random() * 50) + 10);
+          r.height = 3;
+          r.id = i;
+          if(i==0)  r.type = 1;
+          if(i==4) r.type = 2;
+          r.build();
+          this.rooms.push(r);
+      }
+      
+      for(let i=0;i<this.rooms.length;i++){
+          if (i<(this.rooms.length-1)){
+            this.generateDoors(this.rooms[i],this.rooms[i+1]);
+          }
+      }
+
+      for(let i=0;i<this.rooms.length;i++){
+          this.rooms[i].buildWall();
+      }
+      
+      for(let i=0;i<this.rooms.length;i++){
+        if (typeof this.rooms[i].tiles !== "undefined"){
+            for (let j=0;j<this.rooms[i].tiles.length;j++){
+                this.tiles.push(this.rooms[i].tiles[j]);
+            }
+        }
+      }
+      this.rooms=[];
+
+
+
+    },
     /**
      * Initialization method reserved for the server.
      * Called once per level during server startup to build the gameEngine master instance.
