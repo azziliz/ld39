@@ -66,7 +66,7 @@
             { "groundId": "_b1_01_ice0" },
             {
                 "groundId": "_b1_01_ice0",
-                "groundDeco": "_b1_03_spear"
+                "propId": "_b1_03_spear"
             },
             { "groundId": "_b1_01_ice0" },
             { "groundId": "_b1_01_ice0" },

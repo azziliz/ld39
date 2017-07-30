@@ -1,6 +1,6 @@
 ﻿'use strict';
 
-window.onload = function () {    
+window.onload = function () {
     gameEngine.client.uiBuilder.init();
     gameEngine.client.eventDispatcher.emitEvent('requestDevTools');
     gameEngine.client.eventDispatcher.init();
@@ -19,9 +19,9 @@ window.onload = function () {
         gameEngine.client.uiBuilder.centerCrawlPanel();
     }, false);
     window.addEventListener('moveHero', function (e) {
-        const plane = {
-            allowFlying: false,
-            allowTerrestrial: true,
+        const stdPlane = {
+            allowFlying: true,
+            allowTerrestrial: false,
             allowAquatic: false,
             allowUnderground: false,
             allowEthereal: false,
@@ -30,9 +30,19 @@ window.onload = function () {
         const newX = currentPos.x + e.detail.x;
         const newY = currentPos.y + e.detail.y;
         const newTile = gameEngine.level.tiles[newY][newX];
-        if (newTile.isPlaneBlocker(plane)) {
-            //TODO : kill
+        if (newTile.isPlaneBlocker(stdPlane)) {
+            //wall, do nothing
         } else {
+            const dangerPlane = {
+                allowFlying: false,
+                allowTerrestrial: true,
+                allowAquatic: false,
+                allowUnderground: false,
+                allowEthereal: false,
+            };
+            if (newTile.isPlaneBlocker(dangerPlane)) {
+                gameEngine.heros[0].hitPoints--;
+            }
             const exit = gameEngine.level.getExit();
             if (newX === exit.x && newY === exit.y) {
                 gameEngine.activeLevel++;

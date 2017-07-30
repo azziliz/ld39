@@ -6252,7 +6252,11 @@
     },
     "_b1_03_spear": {
         "layerId": "03",
-        "rank": 802
+        "rank": 802,
+        "hasPhysics": true,
+        "allowFlying": true,
+        "allowAquatic": true,
+        "allowEthereal": true
     },
     "_b1_03_spiked_pit.rl1": {
         "layerId": "03",

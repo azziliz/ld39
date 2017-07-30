@@ -218,6 +218,7 @@ murmures.Tile.prototype = {
                 };
             }
         }
+        if (plane.allowTerrestrial && !propPlanes.allowTerrestrial) return true;
         if (plane.allowFlying && groundPlanes.allowFlying && propPlanes.allowFlying) return false;
         if (plane.allowTerrestrial && groundPlanes.allowTerrestrial && propPlanes.allowTerrestrial) return false;
         if (plane.allowAquatic && groundPlanes.allowAquatic && propPlanes.allowAquatic) return false;
