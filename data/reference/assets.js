@@ -6184,71 +6184,139 @@
     },
     "_b1_03_arrow": {
         "layerId": "03",
-        "rank": 785
+        "rank": 785,
+        "hasPhysics": true,
+        "allowFlying": true,
+        "allowAquatic": true,
+        "allowEthereal": true
     },
     "_b1_03_bear_trap.rl1": {
         "layerId": "03",
-        "rank": 786
+        "rank": 786,
+        "hasPhysics": true,
+        "allowFlying": true,
+        "allowAquatic": true,
+        "allowEthereal": true
     },
     "_b1_03_blade": {
         "layerId": "03",
-        "rank": 787
+        "rank": 787,
+        "hasPhysics": true,
+        "allowFlying": true,
+        "allowAquatic": true,
+        "allowEthereal": true
     },
     "_b1_03_bolt": {
         "layerId": "03",
-        "rank": 788
+        "rank": 788,
+        "hasPhysics": true,
+        "allowFlying": true,
+        "allowAquatic": true,
+        "allowEthereal": true
     },
     "_b1_03_dart": {
         "layerId": "03",
-        "rank": 789
+        "rank": 789,
+        "hasPhysics": true,
+        "allowFlying": true,
+        "allowAquatic": true,
+        "allowEthereal": true
     },
     "_b1_03_dngn_trap_alarm": {
         "layerId": "03",
-        "rank": 790
+        "rank": 790,
+        "hasPhysics": true,
+        "allowFlying": true,
+        "allowAquatic": true,
+        "allowEthereal": true
     },
     "_b1_03_dngn_trap_axe": {
         "layerId": "03",
-        "rank": 791
+        "rank": 791,
+        "hasPhysics": true,
+        "allowFlying": true,
+        "allowAquatic": true,
+        "allowEthereal": true
     },
     "_b1_03_dngn_trap_shaft": {
         "layerId": "03",
-        "rank": 792
+        "rank": 792,
+        "hasPhysics": true,
+        "allowFlying": true,
+        "allowAquatic": true,
+        "allowEthereal": true
     },
     "_b1_03_fire_trap.rl1": {
         "layerId": "03",
-        "rank": 793
+        "rank": 793,
+        "hasPhysics": true,
+        "allowFlying": true,
+        "allowAquatic": true,
+        "allowEthereal": true
     },
     "_b1_03_gas_trap": {
         "layerId": "03",
-        "rank": 794
+        "rank": 794,
+        "hasPhysics": true,
+        "allowFlying": true,
+        "allowAquatic": true,
+        "allowEthereal": true
     },
     "_b1_03_hole.rl1": {
         "layerId": "03",
-        "rank": 795
+        "rank": 795,
+        "hasPhysics": true,
+        "allowFlying": true,
+        "allowAquatic": true,
+        "allowEthereal": true
     },
     "_b1_03_ice.rl1": {
         "layerId": "03",
-        "rank": 796
+        "rank": 796,
+        "hasPhysics": true,
+        "allowFlying": true,
+        "allowAquatic": true,
+        "allowEthereal": true
     },
     "_b1_03_needle": {
         "layerId": "03",
-        "rank": 797
+        "rank": 797,
+        "hasPhysics": true,
+        "allowFlying": true,
+        "allowAquatic": true,
+        "allowEthereal": true
     },
     "_b1_03_net": {
         "layerId": "03",
-        "rank": 798
+        "rank": 798,
+        "hasPhysics": true,
+        "allowFlying": true,
+        "allowAquatic": true,
+        "allowEthereal": true
     },
     "_b1_03_pit.rl1": {
         "layerId": "03",
-        "rank": 799
+        "rank": 799,
+        "hasPhysics": true,
+        "allowFlying": true,
+        "allowAquatic": true,
+        "allowEthereal": true
     },
     "_b1_03_pressure_plate": {
         "layerId": "03",
-        "rank": 800
+        "rank": 800,
+        "hasPhysics": true,
+        "allowFlying": true,
+        "allowAquatic": true,
+        "allowEthereal": true
     },
     "_b1_03_shaft": {
         "layerId": "03",
-        "rank": 801
+        "rank": 801,
+        "hasPhysics": true,
+        "allowFlying": true,
+        "allowAquatic": true,
+        "allowEthereal": true
     },
     "_b1_03_spear": {
         "layerId": "03",
@@ -6260,7 +6328,11 @@
     },
     "_b1_03_spiked_pit.rl1": {
         "layerId": "03",
-        "rank": 803
+        "rank": 803,
+        "hasPhysics": true,
+        "allowFlying": true,
+        "allowAquatic": true,
+        "allowEthereal": true
     },
     "_b1_03_trap_mechanical": {
         "layerId": "03",
@@ -6272,7 +6344,11 @@
     },
     "_b1_04_dngn_trap_iii.rl3": {
         "layerId": "04",
-        "rank": 806
+        "rank": 806,
+        "hasPhysics": true,
+        "allowFlying": true,
+        "allowAquatic": true,
+        "allowEthereal": true
     },
     "_b1_04_dngn_trap_teleport": {
         "layerId": "04",

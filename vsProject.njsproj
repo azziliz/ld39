@@ -47,8 +47,8 @@
     <Content Include="data\staticlevels\level1.js" />
     <Content Include="data\staticlevels\level2.js" />
     <Content Include="data\staticlevels\level3.js" />
-    <Content Include="data\staticlevels\level4.json" />
-    <Content Include="data\staticlevels\level5.json" />
+    <Content Include="data\staticlevels\level4.js" />
+    <Content Include="data\staticlevels\level5.js" />
     <Content Include="README.md" />
     <Compile Include="server.js" />
     <Content Include="src\img\murmures.png" />

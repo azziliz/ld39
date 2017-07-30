@@ -44,7 +44,7 @@ window.onload = function () {
                 // hero is hurt. Is it a trap or lava?
                 if (newTile.isPlaneBlocker(dangerPlane, true)) {
                     // lava. Kill
-                    gameEngine.heros[0].hitPoints-=1000;
+                    gameEngine.heros[0].hitPoints-=2;
                 } else {
                     // trap HP - 1
                     gameEngine.heros[0].hitPoints--;
