@@ -245,7 +245,6 @@ murmures.UiBuilder.prototype = {
     // #region update ui
     clearAllCharacters : function () {
         if (this.hasMainWindows()) {
-            document.getElementById('rightCharacters').innerHTML = '';
             this.crawlUiMobCount = 0;
         }
     },
@@ -271,6 +270,18 @@ murmures.UiBuilder.prototype = {
                 document.getElementById('leftCharacters').insertAdjacentHTML('beforeend', '<div id="heart' + i + '" class="uiIcon"></div>');
                 document.getElementById('heart' + i).style.backgroundImage = "url('" + gameEngine.client.renderer.tileset.color.blobUrl + "')";
                 document.getElementById('heart' + i).style.backgroundPosition = '-' + gameEngine.tileSize * tilesetX + 'px -' + gameEngine.tileSize * tilesetY + 'px';
+            }
+        }
+        
+        document.getElementById('rightCharacters').innerHTML = '';
+        if (true) {
+            const tilesetRank = 8203;
+            const tilesetX = tilesetRank % 64;
+            const tilesetY = (tilesetRank - tilesetX) / 64;
+            for (let i = 0; i < gameEngine.heros[0].powerCharge; i++) {
+                document.getElementById('rightCharacters').insertAdjacentHTML('beforeend', '<div id="crystal' + i + '" class="uiIcon crystalIcon"></div>');
+                document.getElementById('crystal' + i).style.backgroundImage = "url('" + gameEngine.client.renderer.tileset.color.blobUrl + "')";
+                document.getElementById('crystal' + i).style.backgroundPosition = '-' + gameEngine.tileSize * tilesetX + 'px -' + gameEngine.tileSize * tilesetY + 'px';
             }
         }
         
@@ -321,91 +332,6 @@ murmures.UiBuilder.prototype = {
     updateEditor : function () {
     },
     
-    drawSkill : function (hero) {
-        let nbSkill = 1;
-        const instance = this;
-        Object.keys(hero.skills).forEach(function (itSkill) {
-            const skill = hero.skills[itSkill];
-            const ref = gameEngine.bodies[skill.asset];
-            const tilesetRank = ref.rank;
-            const tilesetX = tilesetRank % 64;
-            const tilesetY = (tilesetRank - tilesetX) / 64;
-            const skillWindow = document.getElementById('hero' + hero.guid + '-skill' + nbSkill);
-            // hack ! TODO : do something clean (draw only once)
-            if (skillWindow.style.backgroundPosition === '') {
-                skillWindow.addEventListener("click", function () { instance.activateSkill(hero.guid, skill.name); });
-            }
-            skillWindow.style.backgroundImage = "url('" + gameEngine.client.renderer.tileset.color.blobUrl + "')";
-            skillWindow.style.backgroundPosition = '-' + gameEngine.tileSize * tilesetX + 'px -' + gameEngine.tileSize * tilesetY + 'px';
-            if (skillWindow.className.indexOf(' skillIcon') === -1) {
-                skillWindow.className += ' skillIcon';
-            }
-            // TODO : change to css behavior
-            if (hero.activeSkill === skill.name) {
-                skillWindow.style.borderColor = "#4d4";
-            } else {
-                skillWindow.style.borderColor = "#666";
-            }
-            nbSkill++;
-        });
-    },
-    
-    activateSkill : function (heroGuid, skillId) {
-        gameEngine.heros.forEach(function (hero) {
-            if (hero.guid === heroGuid) {
-                hero.activeSkill = skillId;
-                this.drawSkill(hero);
-            }
-        }, this);
-    },
-    
-    paintIcons : function (title, layerId) {
-        let tileUiTemplate = this.template.tileUiTemplate;
-        let templateStr = /template/g;
-        document.getElementById('leftCharacters').insertAdjacentHTML('beforeend', '<div class="collapsible">' + title + '</div>');
-        document.getElementById('leftCharacters').insertAdjacentHTML('beforeend', '<div class="collapsiblepanel" id="subpanel.' + layerId[0] + '"></div>');
-        Object.keys(gameEngine.bodies).forEach(function (groundId) {
-            const ref = gameEngine.bodies[groundId];
-            if (layerId.indexOf(ref.layerId) >= 0) {
-                const tilesetRank = ref.rank;
-                const tilesetX = tilesetRank % 64;
-                const tilesetY = (tilesetRank - tilesetX) / 64;
-                const groundCopy = groundId;
-                document.getElementById('subpanel.' + layerId[0]).insertAdjacentHTML('beforeend', tileUiTemplate.replace(templateStr, groundId));
-                document.getElementById(groundId + '-icon').style.backgroundImage = "url('" + gameEngine.client.renderer.tileset.color.blobUrl + "')";
-                document.getElementById(groundId + '-icon').style.backgroundPosition = '-' + gameEngine.tileSize * tilesetX + 'px -' + gameEngine.tileSize * tilesetY + 'px';
-                document.getElementById(groundId + '-icon').addEventListener("mousedown", function (e) {
-                    e.preventDefault();
-                    if (e.button === 2) {
-                        for (let key in gameEngine.bodies) {
-                            if (gameEngine.bodies[key].rank === tilesetRank) {
-                                const body = gameEngine.bodies[key];
-                                document.getElementById('uniqueId').value = key;
-                                document.getElementById('layerId').value = body.layerId;
-                                document.getElementById('rank').value = body.rank;
-                                document.getElementById('hasPhysics').checked = body.hasPhysics;
-                                document.getElementById('allowFlying').checked = body.allowFlying;
-                                document.getElementById('allowTerrestrial').checked = body.allowTerrestrial;
-                                document.getElementById('allowAquatic').checked = body.allowAquatic;
-                                document.getElementById('allowUnderground').checked = body.allowUnderground;
-                                document.getElementById('allowEthereal').checked = body.allowEthereal;
-                                document.getElementById('behavior').value = typeof body.behavior === 'undefined' ? '{}' : JSON.stringify(body.behavior);
-                            }
-                        }
-                    } else {
-                        gameEngine.client.editor.selectedBrush.id = groundCopy;
-                        gameEngine.client.editor.selectedBrush.layerId = ref.layerId;
-                        document.getElementById('selectedBrush' + '-icon').style.backgroundPosition = '-' + gameEngine.tileSize * tilesetX + 'px -' + gameEngine.tileSize * tilesetY + 'px';
-                        document.getElementById("leftCharacters").style.display = "none";
-                        document.getElementById("rightCharacters").style.display = "none";
-                    }
-                }, false);
-                document.getElementById(groundId + '-icon').addEventListener("contextmenu", function (e) { // mouse right click
-                    e.preventDefault();
-                }, false);
-            }
-        });
-    },
     // #endregion
     
 };

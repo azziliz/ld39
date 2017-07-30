@@ -10,10 +10,10 @@ window.onload = function () {
     
     window.addEventListener('tilesetReady', function (e) {
         murmures.initGameEngine();
-        gameEngine.client.eventDispatcher.emitEvent('requestHighlight');
         gameEngine.client.eventDispatcher.emitEvent('requestCrawlUi');
     }, false);
     window.addEventListener('mainWindowReady', function (e) {
+        gameEngine.client.eventDispatcher.emitEvent('requestHighlight');
         gameEngine.client.eventDispatcher.emitEvent('requestRefreshCrawlUi');
         gameEngine.client.eventDispatcher.emitEvent('requestRenderFullEngine');
         gameEngine.client.uiBuilder.centerCrawlPanel();
@@ -56,15 +56,29 @@ window.onload = function () {
                 gameEngine.activeLevel++;
                 gameEngine.level = gameEngine.levels[gameEngine.activeLevel];
                 gameEngine.level.moveHeroesToEntrance();
+                if (gameEngine.level.power >= 4) {
+                    gameEngine.flash = true;
+                    window.setTimeout(function () {
+                        gameEngine.flash = false;
+                        gameEngine.client.eventDispatcher.emitEvent('requestHighlight');
+                    }, 3000);
+                }
                 gameEngine.client.eventDispatcher.emitEvent('requestHighlight');
                 gameEngine.client.eventDispatcher.emitEvent('requestRefreshCrawlUi');
                 gameEngine.client.eventDispatcher.emitEvent('requestRenderFullEngine');
                 gameEngine.client.uiBuilder.centerCrawlPanel();
             } else {
                 gameEngine.heros[0].move(newX, newY);
-                if (gameEngine.heros[0].position.hasTorch()) {
-                    gameEngine.level.power = 0; // lighting
-                    gameEngine.heros[0].position.itemId = ''; // remove torch
+                if (gameEngine.heros[0].position.itemId === '_b1_25_gervais_0921') { // lamp
+                    gameEngine.level.power = 0; // full highlight
+                    gameEngine.heros[0].position.itemId = ''; // remove lamp
+                    gameEngine.heros[0].powerCharge = 1;
+                    gameEngine.client.eventDispatcher.emitEvent('requestHighlight');
+                    gameEngine.client.eventDispatcher.emitEvent('requestRefreshCrawlUi');
+                    gameEngine.client.eventDispatcher.emitEvent('requestRenderFullEngine');
+                } else if (gameEngine.heros[0].position.itemId !== '') { // crystal
+                    gameEngine.heros[0].position.itemId = ''; // remove crystal
+                    gameEngine.heros[0].powerCharge += 2;
                     gameEngine.client.eventDispatcher.emitEvent('requestHighlight');
                     gameEngine.client.eventDispatcher.emitEvent('requestRefreshCrawlUi');
                     gameEngine.client.eventDispatcher.emitEvent('requestRenderFullEngine');

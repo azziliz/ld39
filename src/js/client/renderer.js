@@ -144,12 +144,26 @@ murmures.Renderer.prototype = {
     highlightLevel : function () {
         for (let x = 0; x < gameEngine.level.width; x++) {
             for (let y = 0; y < gameEngine.level.height; y++) {
-                if (gameEngine.level.power === 0) {
-                    gameEngine.level.tiles[y][x].state = murmures.C.TILE_HIGHLIGHTED;
-                } else {
-                    gameEngine.level.tiles[y][x].state = murmures.C.TILE_FOG_OF_WAR;
-                }
+                gameEngine.level.tiles[y][x].state = murmures.C.TILE_FOG_OF_WAR;
             }
+        }
+        if (gameEngine.level.power === 0) {
+            document.getElementById('fogOfWarLayer').style.opacity = '0';
+        } else if (gameEngine.level.power >= 3) {
+            document.getElementById('fogOfWarLayer').style.opacity = '1';
+        } else {
+            document.getElementById('fogOfWarLayer').style.opacity = '0.5';
+        }
+        if (gameEngine.level.power === 2) {
+            if (gameEngine.heros[0].powerCharge < 10) {
+                document.getElementById('fogOfWarLayer').className = 'blinkingFog';
+            } else {
+                document.getElementById('fogOfWarLayer').className = '';
+                document.getElementById('fogOfWarLayer').style.opacity = '0';
+            }
+        }
+        if (gameEngine.flash) {
+            document.getElementById('fogOfWarLayer').style.opacity = '0';
         }
     },
     

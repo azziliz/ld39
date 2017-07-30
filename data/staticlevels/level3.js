@@ -1,7 +1,7 @@
 ﻿murmures.staticLevels.level3 = {
     "id": "ld39.3",
     "h1": "Level 3",
-    "h2": "Oh no! It's getting dark<br>Quick, pick a torch",
+    "h2": "Oh no! It's getting dark<br>Quick, pick a lamp",
     "hasHP": true,
     "power": 1,
     "layout": "square",
@@ -48,7 +48,8 @@
             { "groundId": "_b1_01_gervais_3004" },
             {
                 "groundId": "_b1_01_gervais_3004",
-                "itemId": "_b1_25_misc_lamp"
+                "comment": "lamp below",
+                "itemId": "_b1_25_gervais_0921"
             },
             { "groundId": "_b1_01_gervais_3004" },
             { "groundId": "_b1_06_crystal_wall10" }

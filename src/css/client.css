@@ -124,7 +124,11 @@ div#tabContent div {
     width: 32px;
     height: 32px;
     display: block;
-    background-color: #f22;
+    background-color: #f24;
+}
+
+.crystalIcon {
+    background-color: #db2;
 }
 
 .skillIcon {
@@ -243,4 +247,17 @@ div.collapsiblepanel {
 
 .uitcMark {
     float: left;
+}
+
+.blinkingFog{
+    animation: blinkingFrame 1s linear 0s infinite alternate;
+}
+
+@keyframes blinkingFrame{
+    0% { opacity:0; }
+    10% { opacity:0; }
+    20% { opacity:1; }
+    80% { opacity:1; }
+    90% { opacity:0; }
+    100% { opacity:0; }
 }

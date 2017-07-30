@@ -1,7 +1,7 @@
 ﻿murmures.staticLevels.level4 = {
     "id": "ld39.4",
     "h1": "Level 4",
-    "h2": "That's better<br>Hopefully, the torch will have enough battery to keep us going",
+    "h2": "This lamp seems to be powered by crystals<br>Hopefully, it contains enough energy to keep us going",
     "hasHP": true,
     "power": 0,
     "layout": "square",

@@ -55,7 +55,7 @@ murmures.C = Object.freeze({
         '01': ['Floor', 'groundId'],
         '02': ['Floordeco', 'groundDeco'],
         '03': ['Trap', 'propId'],
-        '04': ['Marks', 'groundDeco'],
+        '04': ['Marks', 'propId'],
         '06': ['Wall', 'groundId'],
         '07': ['Walldeco', 'groundDeco'],
         '11': ['Stairs', 'propId'],

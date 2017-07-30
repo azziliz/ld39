@@ -41,6 +41,8 @@ murmures.GameEngine = function () {
     this.activeLevel = 0;
     /** @type {number} */
     this.gameTurn = 0;
+    /** @type {bool} */
+    this.flash = false;
     /** @type {number} */
     this.state = murmures.C.STATE_ENGINE_INIT | 0;
 };

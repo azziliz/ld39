@@ -75,6 +75,17 @@ murmures.InputHandler.prototype = {
                         // Do something for "right arrow" key press.
                         gameEngine.client.eventDispatcher.emitEvent('moveHero', { x: 1, y: 0 });
                         break;
+                    case 0x20 :// "Space"
+                        // Do something for "space" key press.
+                        gameEngine.flash = true;
+                        gameEngine.client.eventDispatcher.emitEvent('requestHighlight');
+                        gameEngine.heros[0].powerCharge--;
+                        window.setTimeout(function () {
+                            gameEngine.flash = false;
+                            gameEngine.client.eventDispatcher.emitEvent('requestHighlight');
+                        }, 1000);
+                        gameEngine.client.eventDispatcher.emitEvent('requestRefreshCrawlUi');
+                        break;
                     //case "Enter":
                     //    // Do something for "enter" or "return" key press.
                     //    break;

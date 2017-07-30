@@ -38,8 +38,8 @@
     <Compile Include="src\js\pages\pathfinding.js" />
     <Content Include="data\locale\en.js" />
     <Content Include="data\locale\fr.json" />
-    <Content Include="data\staticlevels\level6.json" />
-    <Content Include="data\staticlevels\level7.json" />
+    <Content Include="data\staticlevels\level6.js" />
+    <Content Include="data\staticlevels\level7.js" />
     <Content Include="data\tmp.json" />
     <Content Include="index.html" />
     <Content Include="package.json" />
