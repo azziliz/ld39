@@ -6340,7 +6340,11 @@
     },
     "_b1_04_alarm": {
         "layerId": "04",
-        "rank": 805
+        "rank": 805,
+        "hasPhysics": true,
+        "allowFlying": true,
+        "allowAquatic": true,
+        "allowEthereal": true
     },
     "_b1_04_dngn_trap_iii.rl3": {
         "layerId": "04",
@@ -6352,103 +6356,203 @@
     },
     "_b1_04_dngn_trap_teleport": {
         "layerId": "04",
-        "rank": 807
+        "rank": 807,
+        "hasPhysics": true,
+        "allowFlying": true,
+        "allowAquatic": true,
+        "allowEthereal": true
     },
     "_b1_04_gervais_0935": {
         "layerId": "04",
-        "rank": 808
+        "rank": 808,
+        "hasPhysics": true,
+        "allowFlying": true,
+        "allowAquatic": true,
+        "allowEthereal": true
     },
     "_b1_04_gervais_0936": {
         "layerId": "04",
-        "rank": 809
+        "rank": 809,
+        "hasPhysics": true,
+        "allowFlying": true,
+        "allowAquatic": true,
+        "allowEthereal": true
     },
     "_b1_04_gervais_0937": {
         "layerId": "04",
-        "rank": 810
+        "rank": 810,
+        "hasPhysics": true,
+        "allowFlying": true,
+        "allowAquatic": true,
+        "allowEthereal": true
     },
     "_b1_04_gervais_3223": {
         "layerId": "04",
-        "rank": 811
+        "rank": 811,
+        "hasPhysics": true,
+        "allowFlying": true,
+        "allowAquatic": true,
+        "allowEthereal": true
     },
     "_b1_04_gervais_3224": {
         "layerId": "04",
-        "rank": 812
+        "rank": 812,
+        "hasPhysics": true,
+        "allowFlying": true,
+        "allowAquatic": true,
+        "allowEthereal": true
     },
     "_b1_04_gervais_3225": {
         "layerId": "04",
-        "rank": 813
+        "rank": 813,
+        "hasPhysics": true,
+        "allowFlying": true,
+        "allowAquatic": true,
+        "allowEthereal": true
     },
     "_b1_04_gervais_3226": {
         "layerId": "04",
-        "rank": 814
+        "rank": 814,
+        "hasPhysics": true,
+        "allowFlying": true,
+        "allowAquatic": true,
+        "allowEthereal": true
     },
     "_b1_04_gervais_3227": {
         "layerId": "04",
-        "rank": 815
+        "rank": 815,
+        "hasPhysics": true,
+        "allowFlying": true,
+        "allowAquatic": true,
+        "allowEthereal": true
     },
     "_b1_04_gervais_3228": {
         "layerId": "04",
-        "rank": 816
+        "rank": 816,
+        "hasPhysics": true,
+        "allowFlying": true,
+        "allowAquatic": true,
+        "allowEthereal": true
     },
     "_b1_04_gervais_3229": {
         "layerId": "04",
-        "rank": 817
+        "rank": 817,
+        "hasPhysics": true,
+        "allowFlying": true,
+        "allowAquatic": true,
+        "allowEthereal": true
     },
     "_b1_04_gervais_3230": {
         "layerId": "04",
-        "rank": 818
+        "rank": 818,
+        "hasPhysics": true,
+        "allowFlying": true,
+        "allowAquatic": true,
+        "allowEthereal": true
     },
     "_b1_04_gervais_3231": {
         "layerId": "04",
-        "rank": 819
+        "rank": 819,
+        "hasPhysics": true,
+        "allowFlying": true,
+        "allowAquatic": true,
+        "allowEthereal": true
     },
     "_b1_04_gervais_3232": {
         "layerId": "04",
-        "rank": 820
+        "rank": 820,
+        "hasPhysics": true,
+        "allowFlying": true,
+        "allowAquatic": true,
+        "allowEthereal": true
     },
     "_b1_04_gervais_3233": {
         "layerId": "04",
-        "rank": 821
+        "rank": 821,
+        "hasPhysics": true,
+        "allowFlying": true,
+        "allowAquatic": true,
+        "allowEthereal": true
     },
     "_b1_04_gervais_3234": {
         "layerId": "04",
-        "rank": 822
+        "rank": 822,
+        "hasPhysics": true,
+        "allowFlying": true,
+        "allowAquatic": true,
+        "allowEthereal": true
     },
     "_b1_04_gervais_3235": {
         "layerId": "04",
-        "rank": 823
+        "rank": 823,
+        "hasPhysics": true,
+        "allowFlying": true,
+        "allowAquatic": true,
+        "allowEthereal": true
     },
     "_b1_04_passage_of_golubria": {
         "layerId": "04",
-        "rank": 824
+        "rank": 824,
+        "hasPhysics": true,
+        "allowFlying": true,
+        "allowAquatic": true,
+        "allowEthereal": true
     },
     "_b1_04_shadow": {
         "layerId": "04",
-        "rank": 825
+        "rank": 825,
+        "hasPhysics": true,
+        "allowFlying": true,
+        "allowAquatic": true,
+        "allowEthereal": true
     },
     "_b1_04_shadow_dormant": {
         "layerId": "04",
-        "rank": 826
+        "rank": 826,
+        "hasPhysics": true,
+        "allowFlying": true,
+        "allowAquatic": true,
+        "allowEthereal": true
     },
     "_b1_04_teleport_permanent": {
         "layerId": "04",
-        "rank": 827
+        "rank": 827,
+        "hasPhysics": true,
+        "allowFlying": true,
+        "allowAquatic": true,
+        "allowEthereal": true
     },
     "_b1_04_transparent_flesh": {
         "layerId": "04",
-        "rank": 828
+        "rank": 828,
+        "hasPhysics": true,
+        "allowFlying": true,
+        "allowAquatic": true,
+        "allowEthereal": true
     },
     "_b1_04_trap_magical": {
         "layerId": "04",
-        "rank": 829
+        "rank": 829,
+        "hasPhysics": true,
+        "allowFlying": true,
+        "allowAquatic": true,
+        "allowEthereal": true
     },
     "_b1_04_zot": {
         "layerId": "04",
-        "rank": 830
+        "rank": 830,
+        "hasPhysics": true,
+        "allowFlying": true,
+        "allowAquatic": true,
+        "allowEthereal": true
     },
     "_b1_04_zot_pillar": {
         "layerId": "04",
-        "rank": 831
+        "rank": 831,
+        "hasPhysics": true,
+        "allowFlying": true,
+        "allowAquatic": true,
+        "allowEthereal": true
     },
     "_b1_06_abyss0": {
         "layerId": "06",

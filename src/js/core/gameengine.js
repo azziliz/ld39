@@ -43,6 +43,7 @@ murmures.GameEngine = function () {
     this.gameTurn = 0;
     /** @type {bool} */
     this.flash = false;
+    this.flashTimeoutId = 0;
     /** @type {number} */
     this.state = murmures.C.STATE_ENGINE_INIT | 0;
 };

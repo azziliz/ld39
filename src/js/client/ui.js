@@ -13,13 +13,13 @@ murmures.UiBuilder = function () {
         progressBar : '<div id="tilesetLoadBg" class="tilesetLoad"> \
 <div id="tilesetLoadProgress"></div> \
 </div>',
-        mainWindow : '<div id="mainWindow" class="fullScreen"> \
-</div>',
-        leftCharacterPanel : '<div id="leftCharacters" class="zUI" style="float:left"> \
-</div>',
-        rightCharacterPanel : '<div id="rightCharacters" class="zUI" style="float:right"> \
-</div>',
-        crawlPanel : '<div id="corridor" class="corridor"> \
+        mainWindow : '<div id="mainWindow" class="fullScreen"><table><tbody><tr> \
+</tr></tbody></table></div>',
+        leftCharacterPanel : '<td style="vertical-align: top;"><div id="leftCharacters" class="zUI" style="float:left"> \
+</div></td>',
+        rightCharacterPanel : '<td style="vertical-align: top;"><div id="rightCharacters" class="zUI" style="float:right"> \
+</div></td>',
+        crawlPanel : '<td style="vertical-align: top;"><div id="corridor" class="corridor"> \
 <div id="crawl" style="position:relative;"> \
 <canvas id="tilesLayer" width="1400" height="840" style="z-index: 15"></canvas> \
 <canvas id="fogOfWarLayer" width="1400" height="840" style="z-index: 25; opacity:0.5"></canvas> \
@@ -28,7 +28,7 @@ murmures.UiBuilder = function () {
 <canvas id="projectileLayer" width="1400" height="840" style="z-index: 40"></canvas> \
 <canvas id="topLayer" width="1400" height="840" style="z-index: 99"></canvas> \
 </div> \
-</div>',
+</div></td>',
         deathWindow : '<div id="deathWindow" class="deathWindow" style="display:none;"> \
 <p style="position:absolute;left:150px;font-size:200%;" id="deathWindowTitle"></p> \
 <p style="position:absolute;left:150px;top:200px;font-size:200%;"><a href="#" onclick="gameEngine.client.ws.send(JSON.stringify({ service: \'restart\' }));" id="deathWindowRestartButton"></a></p> \
@@ -199,9 +199,9 @@ murmures.UiBuilder.prototype = {
         if (!this.hasMainWindows()) {
             this.drawDeathWindow();
             this.drawMainWindow();
-            this.drawLeftCharacterPanel();
-            this.drawRightCharacterPanel();
-            this.drawCrawlPanel();
+            //this.drawLeftCharacterPanel();
+            //this.drawCrawlPanel();
+            //this.drawRightCharacterPanel();
             window.addEventListener('resize', this.centerCrawlPanel);
         }
         gameEngine.client.eventDispatcher.emitEvent('mainWindowReady');
@@ -219,14 +219,15 @@ murmures.UiBuilder.prototype = {
     
     drawMainWindow : function () {
         document.body.appendChild(this.createElementFromTemplate(this.template.mainWindow));
+        this.getMainWindows().firstChild.firstChild.firstChild.innerHTML = this.template.leftCharacterPanel + this.template.crawlPanel + this.template.rightCharacterPanel;
     },
     
     drawLeftCharacterPanel : function () {
-        this.getMainWindows().appendChild(this.createElementFromTemplate(this.template.leftCharacterPanel));
+        this.getMainWindows().firstChild.firstChild.firstChild.appendChild(this.createElementFromTemplate(this.template.leftCharacterPanel));
     },
     
     drawRightCharacterPanel : function () {
-        this.getMainWindows().appendChild(this.createElementFromTemplate(this.template.rightCharacterPanel));
+        this.getMainWindows().firstChild.firstChild.firstChild.appendChild(this.createElementFromTemplate(this.template.rightCharacterPanel));
     },
     
     drawEditorPanel : function () {
@@ -234,7 +235,7 @@ murmures.UiBuilder.prototype = {
     },
     
     drawCrawlPanel : function () {
-        this.getMainWindows().appendChild(this.createElementFromTemplate(this.template.crawlPanel));
+        this.getMainWindows().firstChild.firstChild.firstChild.appendChild(this.createElementFromTemplate(this.template.crawlPanel));
     },
     
     drawDeathWindow : function () {

@@ -58,10 +58,11 @@ window.onload = function () {
                 gameEngine.level.moveHeroesToEntrance();
                 if (gameEngine.level.power >= 4) {
                     gameEngine.flash = true;
-                    window.setTimeout(function () {
+                    window.clearTimeout(gameEngine.flashTimeoutId);
+                    gameEngine.flashTimeoutId = window.setTimeout(function () {
                         gameEngine.flash = false;
                         gameEngine.client.eventDispatcher.emitEvent('requestHighlight');
-                    }, 3000);
+                    }, 5000);
                 }
                 gameEngine.client.eventDispatcher.emitEvent('requestHighlight');
                 gameEngine.client.eventDispatcher.emitEvent('requestRefreshCrawlUi');

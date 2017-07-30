@@ -80,10 +80,11 @@ murmures.InputHandler.prototype = {
                         gameEngine.flash = true;
                         gameEngine.client.eventDispatcher.emitEvent('requestHighlight');
                         gameEngine.heros[0].powerCharge--;
-                        window.setTimeout(function () {
+                        window.clearTimeout(gameEngine.flashTimeoutId);
+                        gameEngine.flashTimeoutId = window.setTimeout(function () {
                             gameEngine.flash = false;
                             gameEngine.client.eventDispatcher.emitEvent('requestHighlight');
-                        }, 1000);
+                        }, 3000);
                         gameEngine.client.eventDispatcher.emitEvent('requestRefreshCrawlUi');
                         break;
                     //case "Enter":

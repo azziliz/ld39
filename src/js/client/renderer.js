@@ -139,6 +139,7 @@ murmures.Renderer.prototype = {
             let context = canvas.getContext('2d');
             context.imageSmoothingEnabled = false;
         });
+        document.getElementById('corridor').style.width = '' + gameEngine.level.width * gameEngine.tileSize + 'px';
     },
     
     highlightLevel : function () {
@@ -152,7 +153,7 @@ murmures.Renderer.prototype = {
         } else if (gameEngine.level.power >= 3) {
             document.getElementById('fogOfWarLayer').style.opacity = '1';
         } else {
-            document.getElementById('fogOfWarLayer').style.opacity = '0.5';
+            document.getElementById('fogOfWarLayer').style.opacity = '0.7';
         }
         if (gameEngine.level.power === 2) {
             if (gameEngine.heros[0].powerCharge < 10) {

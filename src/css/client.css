@@ -242,7 +242,8 @@ div.collapsiblepanel {
     /*position: relative;
     width: calc(100% - 430px);
     height: calc(100vh - 150px);*/
-    padding-left: 40px;
+    padding-left: 10px;
+    padding-right: 15px;
 }
 
 .uitcMark {
@@ -250,7 +251,7 @@ div.collapsiblepanel {
 }
 
 .blinkingFog{
-    animation: blinkingFrame 1s linear 0s infinite alternate;
+    animation: blinkingFrame 1.2s ease 0s infinite alternate;
 }
 
 @keyframes blinkingFrame{
