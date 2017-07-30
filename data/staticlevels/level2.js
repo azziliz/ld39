@@ -3,7 +3,7 @@
     "h1": "Level 2",
     "h2": "- Hit a wall, you won't move<br>- Step on a trap, you lose 1 HP<br>- Fall in lava or in deep water, you die instantly",
     "hasHP": true,
-    "hasPower": false,
+    "power": 0,
     "layout": "square",
     "width": 21,
     "height": 5,

@@ -151,7 +151,11 @@ murmures.Tile.prototype = {
         }
         return { code : ret, mob : retMob, isHero : heroRet };
     },
-
+    
+    hasTorch : function () {
+        return this.itemId !== '';
+    },
+    
     isWall : function () {
         let allowTerrestrialGround = (this.groundId === "") ? true : !gameEngine.bodies[this.groundId].hasPhysics ? true : !!gameEngine.bodies[this.groundId].allowTerrestrial;
         let allowTerrestrialProp = (this.propId === "") ? true : !gameEngine.bodies[this.propId].hasPhysics ? true : !!gameEngine.bodies[this.propId].allowTerrestrial;
@@ -159,7 +163,7 @@ murmures.Tile.prototype = {
         return (!allowTerrestrialGround || !allowTerrestrialProp) && !hasMoveBehavior;
     },
 
-    isPlaneBlocker: function (plane) {
+    isPlaneBlocker: function (plane, hitTerrestrial) {
         let groundPlanes;
         if (this.groundId === '') {
             groundPlanes = {
@@ -218,7 +222,7 @@ murmures.Tile.prototype = {
                 };
             }
         }
-        if (plane.allowTerrestrial && !propPlanes.allowTerrestrial) return true;
+        if (hitTerrestrial && plane.allowTerrestrial && !propPlanes.allowTerrestrial) return false;
         if (plane.allowFlying && groundPlanes.allowFlying && propPlanes.allowFlying) return false;
         if (plane.allowTerrestrial && groundPlanes.allowTerrestrial && propPlanes.allowTerrestrial) return false;
         if (plane.allowAquatic && groundPlanes.allowAquatic && propPlanes.allowAquatic) return false;

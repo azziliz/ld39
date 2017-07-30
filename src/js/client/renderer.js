@@ -144,7 +144,11 @@ murmures.Renderer.prototype = {
     highlightLevel : function () {
         for (let x = 0; x < gameEngine.level.width; x++) {
             for (let y = 0; y < gameEngine.level.height; y++) {
-                gameEngine.level.tiles[y][x].state = murmures.C.TILE_HIGHLIGHTED;
+                if (gameEngine.level.power === 0) {
+                    gameEngine.level.tiles[y][x].state = murmures.C.TILE_HIGHLIGHTED;
+                } else {
+                    gameEngine.level.tiles[y][x].state = murmures.C.TILE_FOG_OF_WAR;
+                }
             }
         }
     },
@@ -250,7 +254,7 @@ murmures.Renderer.prototype = {
         let tilesetRank = gameEngine.bodies[character.mobTemplate].rank;
         let tilesetX = tilesetRank % 64;
         let tilesetY = (tilesetRank - tilesetX) / 64;
-        if (gameEngine.level.tiles[character.position.y][character.position.x].state === murmures.C.TILE_HIGHLIGHTED) {
+        if (true) {
             document.getElementById('characterLayer').getContext('2d').drawImage(
                 !character.isHero || character.guid === gameEngine.getCurrentHero().guid ? this.tileset.color.imgElement : this.tileset.gray.imgElement,
                     tilesetX * gameEngine.tileSize, tilesetY * gameEngine.tileSize, gameEngine.tileSize, gameEngine.tileSize,

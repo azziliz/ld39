@@ -3,7 +3,7 @@
     "h1": "Level 1 : Welcome!",
     "h2": "- Move with arrow keys, I/J/K/L, or num pad<br>- Reach the exit",
     "hasHP": false,
-    "hasPower": false,
+    "power": 0,
     "layout": "square",
     "width": 7,
     "height": 6,

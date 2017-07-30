@@ -28,7 +28,7 @@ murmures.Level = function () {
     this.h1 = '';
     this.h2 = '';
     this.hasHP = false;
-    this.hasPower = false;
+    this.power = 0;
     /** @type {string} */
     this.layout = '';
     /** @type {number} */
@@ -147,7 +147,7 @@ murmures.Level.prototype = {
         this.h1 = src.h1;
         this.h2 = src.h2;
         this.hasHP = src.hasHP;
-        this.hasPower = src.hasPower;
+        this.power = src.power;
         this.layout = src.layout;
         this.width = src.width | 0;
         this.height = src.height | 0;

@@ -30,7 +30,7 @@ window.onload = function () {
         const newX = currentPos.x + e.detail.x;
         const newY = currentPos.y + e.detail.y;
         const newTile = gameEngine.level.tiles[newY][newX];
-        if (newTile.isPlaneBlocker(stdPlane)) {
+        if (newTile.isPlaneBlocker(stdPlane, false)) {
             //wall, do nothing
         } else {
             const dangerPlane = {
@@ -40,9 +40,17 @@ window.onload = function () {
                 allowUnderground: false,
                 allowEthereal: false,
             };
-            if (newTile.isPlaneBlocker(dangerPlane)) {
-                gameEngine.heros[0].hitPoints--;
+            if (newTile.isPlaneBlocker(dangerPlane, false)) {
+                // hero is hurt. Is it a trap or lava?
+                if (newTile.isPlaneBlocker(dangerPlane, true)) {
+                    // lava. Kill
+                    gameEngine.heros[0].hitPoints-=1000;
+                } else {
+                    // trap HP - 1
+                    gameEngine.heros[0].hitPoints--;
+                }
             }
+            //TODO : death
             const exit = gameEngine.level.getExit();
             if (newX === exit.x && newY === exit.y) {
                 gameEngine.activeLevel++;
@@ -54,8 +62,16 @@ window.onload = function () {
                 gameEngine.client.uiBuilder.centerCrawlPanel();
             } else {
                 gameEngine.heros[0].move(newX, newY);
-                gameEngine.client.eventDispatcher.emitEvent('requestRefreshCrawlUi');
-                gameEngine.client.eventDispatcher.emitEvent('requestRenderPartialEngine');
+                if (gameEngine.heros[0].position.hasTorch()) {
+                    gameEngine.level.power = 0; // lighting
+                    gameEngine.heros[0].position.itemId = ''; // remove torch
+                    gameEngine.client.eventDispatcher.emitEvent('requestHighlight');
+                    gameEngine.client.eventDispatcher.emitEvent('requestRefreshCrawlUi');
+                    gameEngine.client.eventDispatcher.emitEvent('requestRenderFullEngine');
+                } else {
+                    gameEngine.client.eventDispatcher.emitEvent('requestRefreshCrawlUi');
+                    gameEngine.client.eventDispatcher.emitEvent('requestRenderPartialEngine');
+                }
             }
         }
     }, false);
