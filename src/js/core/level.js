@@ -25,6 +25,10 @@ murmures.Level = function () {
     this.guid = '';
     /** @type {string} */
     this.id = '';
+    this.h1 = '';
+    this.h2 = '';
+    this.hasHP = false;
+    this.hasPower = false;
     /** @type {string} */
     this.layout = '';
     /** @type {number} */
@@ -140,6 +144,10 @@ murmures.Level.prototype = {
     build : function (src) {
         this.guid = murmures.Utils.newGuid();
         this.id = src.id;
+        this.h1 = src.h1;
+        this.h2 = src.h2;
+        this.hasHP = src.hasHP;
+        this.hasPower = src.hasPower;
         this.layout = src.layout;
         this.width = src.width | 0;
         this.height = src.height | 0;

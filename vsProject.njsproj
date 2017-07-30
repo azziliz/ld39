@@ -45,7 +45,7 @@
     <Content Include="package.json" />
     <Content Include="data\reference\assets.js" />
     <Content Include="data\staticlevels\level1.js" />
-    <Content Include="data\staticlevels\level2.json" />
+    <Content Include="data\staticlevels\level2.js" />
     <Content Include="data\staticlevels\level3.json" />
     <Content Include="data\staticlevels\level4.json" />
     <Content Include="data\staticlevels\level5.json" />

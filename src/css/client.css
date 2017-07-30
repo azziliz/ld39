@@ -8,8 +8,9 @@ body {
 }
 
 header {
-    height: 40px;
-    margin-bottom: 3px;
+    /*height: 40px;*/
+    margin-bottom: 20px;
+    padding-left: 5px;
 }
 
 canvas {
@@ -123,8 +124,7 @@ div#tabContent div {
     width: 32px;
     height: 32px;
     display: block;
-    background-color: #222;
-    border: 1px solid #666;
+    background-color: #f22;
 }
 
 .skillIcon {
@@ -238,6 +238,7 @@ div.collapsiblepanel {
     /*position: relative;
     width: calc(100% - 430px);
     height: calc(100vh - 150px);*/
+    padding-left: 40px;
 }
 
 .uitcMark {
