@@ -52,3 +52,157 @@ murmures.initGameEngine = function () {
     
     gameEngine.state = murmures.C.STATE_ENGINE_INIT;
 };
+
+var MazeCells = [];
+var SortedCells = [];
+var Walls = [];
+
+var MazeCell = function () {
+    this.x = 0;
+    this.y = 0;
+    this.xPlus = null;
+    this.yPlus = null;
+    this.group = 0;
+};
+
+var GenerateMaze = function (xMax, yMax) {
+    MazeCells = [];
+    SortedCells = [];
+    Walls = [];
+    let cellGroup = 0;
+    for (let xVar = 0; xVar < xMax; xVar++) {
+        for (let yVar = 0; yVar < yMax; yVar++) {
+            const cell = new MazeCell();
+            cell.x = xVar;
+            cell.y = yVar;
+            cell.group = cellGroup++;
+            MazeCells.push(cell);
+            SortedCells.push({ key: Math.random(), cell: cell });
+        }
+    }
+    MazeCells.forEach(function (cell) {
+        const xPlus = MazeCells.filter(function (p) {
+            return (p.x === cell.x + 1 && p.y === cell.y)
+        });
+        if (xPlus.length > 0) {
+            cell.xPlus = xPlus[0];
+            Walls.push({ key: Math.random(), cell: cell, neighbor: xPlus[0], dir : 1 });
+        }
+        const yPlus = MazeCells.filter(function (p) {
+            return (p.x === cell.x && p.y === cell.y + 1)
+        });
+        if (yPlus.length > 0) {
+            cell.yPlus = yPlus[0];
+            Walls.push({ key: Math.random(), cell: cell, neighbor: yPlus[0], dir : 2 });
+        }
+    });
+    SortedCells.sort(function (a, b) {
+        return a.key - b.key;
+    });
+    Walls.sort(function (a, b) {
+        return a.key - b.key;
+    });
+    Walls.forEach(function (wall) {
+        const currentcell = wall.cell;
+        const neighbor = wall.neighbor;
+        const newGroup = currentcell.group;
+        const oldGroup = neighbor.group;
+        if (oldGroup !== newGroup) {
+            MazeCells.forEach(function (neighborGroupElement) {
+                if (neighborGroupElement.group === oldGroup) neighborGroupElement.group = newGroup;
+            });
+            if (wall.dir === 1) {
+                currentcell.xPlus = null;
+            }
+            if (wall.dir === 2) {
+                currentcell.yPlus = null;
+            }
+        }
+    });
+    let wallId = '';
+    while (true) {
+        let result;
+        let count = 0;
+        for (var prop in gameEngine.bodies) {
+            if (Math.random() < 1 / ++count) {
+                result = prop;
+            }
+            if (count > 1500) break;
+        }
+        if (gameEngine.bodies[result].layerId === '06' 
+            && gameEngine.bodies[result].hasPhysics === true 
+            && gameEngine.bodies[result].allowFlying === undefined) {
+            wallId = result;
+            break;
+        };
+    }
+    const floors = ['_b1_01_corridor_light.conv',
+        '_b1_01_black_cobalt12',
+        '_b1_01_bog_green0',
+        '_b1_01_cobble_blood1',
+        '_b1_01_corridor.rl1',
+        '_b1_01_crystal_floor0',
+        '_b1_01_dirt0',
+        '_b1_01_floor11',
+        '_b1_01_floor12',
+        '_b1_01_floor13',
+        '_b1_01_floor22',
+        '_b1_01_floor33',
+        '_b1_01_floor_light.conv',
+        '_b1_01_floor_sand_rock0',
+        '_b1_01_gervais_2945',
+        '_b1_01_gervais_3016',
+        '_b1_01_gervais_3018',
+        '_b1_01_gervais_3022',
+        '_b1_01_gervais_3122',
+        '_b1_01_gervais_3139',
+        '_b1_01_grass0-dirt-mix1',
+        '_b1_01_grass0',
+        '_b1_01_hive0',
+        '_b1_01_lair3b',
+        '_b1_01_limestone0',
+        '_b1_01_lit_corridor.rl1',
+        '_b1_01_mesh0',
+        '_b1_01_sand1',
+        '_b1_01_sandstone_floor0',
+        '_b1_01_white_marble0'
+    ];
+    let floorId = floors[Math.floor(Math.random() * floors.length)];;
+    const ret = new murmures.Level();
+    ret.guid = murmures.Utils.newGuid();
+    ret.id = 'ld39.10';
+    ret.h1 = 'Level ' + (gameEngine.activeLevel + 1);
+    ret.h2 = 'Keep going, as far as possible';
+    ret.hasHP = true;
+    ret.power = 4;
+    ret.layout = 'square';
+    ret.width = 2 * xMax + 1;
+    ret.height = 2 * yMax + 1;
+    ret.tiles = [];
+    for (let y = 0; y < ret.height; y++) {
+        ret.tiles[y] = [];
+        for (let x = 0; x < ret.width; x++) {
+            ret.tiles[y][x] = new murmures.Tile(x, y);
+            if (x % 2 === 0 && y % 2 === 0) {
+                ret.tiles[y][x].build({ "groundId": wallId });
+            } else if (x === 0 || y === 0 || x === ret.width - 1 || y === ret.height - 1) {
+                ret.tiles[y][x].build({ "groundId": wallId });
+            } else {
+                ret.tiles[y][x].build({ "groundId": floorId });
+            }
+        }
+    }
+    MazeCells.forEach(function (currentcell) {
+        if (currentcell.xPlus != null) {
+            ret.tiles[currentcell.y * 2 + 1][currentcell.x * 2 + 2].groundId = wallId;
+        }
+        if (currentcell.yPlus != null) {
+            ret.tiles[currentcell.y * 2 + 2][currentcell.x * 2 + 1].groundId = wallId;
+        }
+    });
+    ret.tiles[SortedCells[0].cell.y * 2 + 1][SortedCells[0].cell.x * 2 + 1].build({ "groundId": floorId, "propId": '_b1_11_rock_stairs_up' });
+    ret.tiles[SortedCells[1].cell.y * 2 + 1][SortedCells[1].cell.x * 2 + 1].build({ "groundId": floorId, "propId": '_b1_11_rock_stairs_down' });
+    if (gameEngine.activeLevel % 4 === 0) ret.tiles[SortedCells[2].cell.y * 2 + 1][SortedCells[2].cell.x * 2 + 1].build({ "groundId": floorId, "itemId": '_b1_25_gervais_0911' });
+
+    return ret;
+};

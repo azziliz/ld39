@@ -77,15 +77,17 @@ murmures.InputHandler.prototype = {
                         break;
                     case 0x20 :// "Space"
                         // Do something for "space" key press.
-                        gameEngine.flash = true;
-                        gameEngine.client.eventDispatcher.emitEvent('requestHighlight');
-                        gameEngine.heros[0].powerCharge--;
-                        window.clearTimeout(gameEngine.flashTimeoutId);
-                        gameEngine.flashTimeoutId = window.setTimeout(function () {
-                            gameEngine.flash = false;
+                        if (gameEngine.heros[0].powerCharge > 0) {
+                            gameEngine.flash = true;
                             gameEngine.client.eventDispatcher.emitEvent('requestHighlight');
-                        }, 3000);
-                        gameEngine.client.eventDispatcher.emitEvent('requestRefreshCrawlUi');
+                            gameEngine.heros[0].powerCharge--;
+                            window.clearTimeout(gameEngine.flashTimeoutId);
+                            gameEngine.flashTimeoutId = window.setTimeout(function () {
+                                gameEngine.flash = false;
+                                gameEngine.client.eventDispatcher.emitEvent('requestHighlight');
+                            }, 5000);
+                            gameEngine.client.eventDispatcher.emitEvent('requestRefreshCrawlUi');
+                        }
                         break;
                     //case "Enter":
                     //    // Do something for "enter" or "return" key press.

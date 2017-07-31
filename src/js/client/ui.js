@@ -280,9 +280,14 @@ murmures.UiBuilder.prototype = {
             const tilesetX = tilesetRank % 64;
             const tilesetY = (tilesetRank - tilesetX) / 64;
             for (let i = 0; i < gameEngine.heros[0].powerCharge; i++) {
-                document.getElementById('rightCharacters').insertAdjacentHTML('beforeend', '<div id="crystal' + i + '" class="uiIcon crystalIcon"></div>');
-                document.getElementById('crystal' + i).style.backgroundImage = "url('" + gameEngine.client.renderer.tileset.color.blobUrl + "')";
-                document.getElementById('crystal' + i).style.backgroundPosition = '-' + gameEngine.tileSize * tilesetX + 'px -' + gameEngine.tileSize * tilesetY + 'px';
+                if (i === 10) {
+                    document.getElementById('rightCharacters').insertAdjacentHTML('beforeend', '<div id="crystal' + i + '" class="txtYellow">+ ' + (gameEngine.heros[0].powerCharge - 10) + '</div>');
+                    break;
+                } else {
+                    document.getElementById('rightCharacters').insertAdjacentHTML('beforeend', '<div id="crystal' + i + '" class="uiIcon crystalIcon"></div>');
+                    document.getElementById('crystal' + i).style.backgroundImage = "url('" + gameEngine.client.renderer.tileset.color.blobUrl + "')";
+                    document.getElementById('crystal' + i).style.backgroundPosition = '-' + gameEngine.tileSize * tilesetX + 'px -' + gameEngine.tileSize * tilesetY + 'px';
+                }                
             }
         }
         

@@ -43,8 +43,8 @@ window.onload = function () {
             if (newTile.isPlaneBlocker(dangerPlane, false)) {
                 // hero is hurt. Is it a trap or lava?
                 if (newTile.isPlaneBlocker(dangerPlane, true)) {
-                    // lava. Kill
-                    gameEngine.heros[0].hitPoints-=2;
+                    // lava. Kill?
+                    gameEngine.heros[0].hitPoints--;
                 } else {
                     // trap HP - 1
                     gameEngine.heros[0].hitPoints--;
@@ -54,7 +54,11 @@ window.onload = function () {
             const exit = gameEngine.level.getExit();
             if (newX === exit.x && newY === exit.y) {
                 gameEngine.activeLevel++;
-                gameEngine.level = gameEngine.levels[gameEngine.activeLevel];
+                if (gameEngine.activeLevel >= 9) {
+                    gameEngine.level = GenerateMaze(Math.floor(gameEngine.activeLevel / 3), 2 + Math.floor(gameEngine.activeLevel / 7));
+                } else {
+                    gameEngine.level = gameEngine.levels[gameEngine.activeLevel];
+                }
                 gameEngine.level.moveHeroesToEntrance();
                 if (gameEngine.level.power >= 4) {
                     gameEngine.flash = true;
@@ -62,7 +66,7 @@ window.onload = function () {
                     gameEngine.flashTimeoutId = window.setTimeout(function () {
                         gameEngine.flash = false;
                         gameEngine.client.eventDispatcher.emitEvent('requestHighlight');
-                    }, 5000);
+                    }, 3000);
                 }
                 gameEngine.client.eventDispatcher.emitEvent('requestHighlight');
                 gameEngine.client.eventDispatcher.emitEvent('requestRefreshCrawlUi');
@@ -73,13 +77,13 @@ window.onload = function () {
                 if (gameEngine.heros[0].position.itemId === '_b1_25_gervais_0921') { // lamp
                     gameEngine.level.power = 0; // full highlight
                     gameEngine.heros[0].position.itemId = ''; // remove lamp
-                    gameEngine.heros[0].powerCharge = 1;
+                    gameEngine.heros[0].powerCharge = 5;
                     gameEngine.client.eventDispatcher.emitEvent('requestHighlight');
                     gameEngine.client.eventDispatcher.emitEvent('requestRefreshCrawlUi');
                     gameEngine.client.eventDispatcher.emitEvent('requestRenderFullEngine');
                 } else if (gameEngine.heros[0].position.itemId !== '') { // crystal
                     gameEngine.heros[0].position.itemId = ''; // remove crystal
-                    gameEngine.heros[0].powerCharge += 2;
+                    gameEngine.heros[0].powerCharge += 1;
                     gameEngine.client.eventDispatcher.emitEvent('requestHighlight');
                     gameEngine.client.eventDispatcher.emitEvent('requestRefreshCrawlUi');
                     gameEngine.client.eventDispatcher.emitEvent('requestRenderFullEngine');
