@@ -38,15 +38,13 @@ murmures.Pathfinding.prototype = {
      * @param {murmures.Tile} target - The targeted tile.
      * @static
      */
-    compute: function (source, target, plane) {
+    compute: function (source, target, plane, level) {
         // This function declares local variable with 'var' keyword for performance reason
         // In V8, declarations with 'let' causes a bailout
         // See bug #5666 :
         // https://bugs.chromium.org/p/v8/issues/detail?id=5666
         //murmures.serverLog("starting A*");
-        
-        var level = gameEngine.level;
-        
+                
         this.path = [];
         this.pathfindingTiles = [];
         for (var y = 0; y < level.height; y++) {
@@ -79,7 +77,7 @@ murmures.Pathfinding.prototype = {
                 return "success";
             }
             this.pathfindingTiles[currentTileY][currentTileX].visited = true;
-            var neighbors = this.getNeighbors(currentTileX, currentTileY);
+            var neighbors = this.getNeighbors(currentTileX, currentTileY, level);
             neighbors.forEach(function (neighbor) {
                 if (this.pathfindingTiles[neighbor.y][neighbor.x].visited) {
                     // ignore
@@ -118,20 +116,19 @@ murmures.Pathfinding.prototype = {
         const deltaX = Math.abs(t1.x - t2.x);
         const deltaY = Math.abs(t1.y - t2.y);
         //let minCoord = (deltaX < deltaY) ? deltaX : deltaY;
-        const maxCoord = (deltaX < deltaY) ? deltaY : deltaX;
+        //const maxCoord = (deltaX < deltaY) ? deltaY : deltaX;
         //return minCoord * 3 + (maxCoord - minCoord) * 2;
         //return (maxCoord + minCoord) * 2 - minCoord;
         //return (maxCoord + minCoord) + maxCoord;
-        return (deltaX + deltaY) + maxCoord;
+        return 2*(deltaX + deltaY);
     },
     
-    getNeighbors: function (x, y) {
-        const level = gameEngine.level;
+    getNeighbors: function (x, y, level) {
         const ret = [];
-        if (x < level.width - 1 && y > 0) ret.push({ x: x + 1, y: y - 1, cost: 3 });
-        if (x > 0 && y > 0) ret.push({ x: x - 1, y: y - 1, cost: 3 });
-        if (x > 0 && y < level.height - 1) ret.push({ x: x - 1, y: y + 1, cost: 3 });
-        if (x < level.width - 1 && y < level.height - 1) ret.push({ x: x + 1, y: y + 1, cost: 3 });
+        //if (x < level.width - 1 && y > 0) ret.push({ x: x + 1, y: y - 1, cost: 3 });
+        //if (x > 0 && y > 0) ret.push({ x: x - 1, y: y - 1, cost: 3 });
+        //if (x > 0 && y < level.height - 1) ret.push({ x: x - 1, y: y + 1, cost: 3 });
+        //if (x < level.width - 1 && y < level.height - 1) ret.push({ x: x + 1, y: y + 1, cost: 3 });
         if (x < level.width - 1) ret.push({ x: x + 1, y: y, cost: 2 });
         if (y > 0) ret.push({ x: x, y: y - 1, cost: 2 });
         if (x > 0) ret.push({ x: x - 1, y: y, cost: 2 });
