@@ -214,6 +214,7 @@ var GenerateMaze = function (xMax, yMax) {
     do {
         const rng1 = Math.floor(Math.random() * (cellGroup - 1));
         const rng2 = Math.floor(Math.random() * (cellGroup - 1));
+        if (rng2 === rng1) continue;
         const pfg = new murmures.Pathfinding();
         pfg.compute(
             ret.tiles[SortedCells[rng1].cell.y * 2 + 1][SortedCells[rng1].cell.x * 2 + 1], 
@@ -222,27 +223,43 @@ var GenerateMaze = function (xMax, yMax) {
         if (pfg.path.length >= 2 * (xMax + yMax - 2)) {
             ret.tiles[SortedCells[rng1].cell.y * 2 + 1][SortedCells[rng1].cell.x * 2 + 1].build({ "groundId": floorId, "propId": '_b1_11_rock_stairs_up' });
             ret.tiles[SortedCells[rng2].cell.y * 2 + 1][SortedCells[rng2].cell.x * 2 + 1].build({ "groundId": wallId }); // teporarily build a wall on rng2 because we don't want powerups AFTER the exit
-            if (gameEngine.activeLevel % 4 === 0) {
+            let rng3 = rng1;
+            if (gameEngine.activeLevel % 3 === 0) {
                 let maxLoops2 = 30;
                 do {
-                    const rng3 = Math.floor(Math.random() * (cellGroup - 1));
+                    rng3 = Math.floor(Math.random() * (cellGroup - 1));
+                    let powerupIsInPath = false;
+                    pfg.path.forEach(function (tile) {
+                        if (tile.x === SortedCells[rng3].cell.x * 2 + 1 && tile.y === SortedCells[rng3].cell.y * 2 + 1) {
+                            powerupIsInPath = true;
+                        }
+                    });
+                    if (powerupIsInPath) continue;
                     const pfg2 = new murmures.Pathfinding();
-                    const pfg3 = new murmures.Pathfinding();
                     pfg2.compute(
                         ret.tiles[SortedCells[rng1].cell.y * 2 + 1][SortedCells[rng1].cell.x * 2 + 1], 
                         ret.tiles[SortedCells[rng3].cell.y * 2 + 1][SortedCells[rng3].cell.x * 2 + 1], 
                         stdPlane, ret);
-                    pfg3.compute(
-                        ret.tiles[SortedCells[rng2].cell.y * 2 + 1][SortedCells[rng2].cell.x * 2 + 1], 
-                        ret.tiles[SortedCells[rng3].cell.y * 2 + 1][SortedCells[rng3].cell.x * 2 + 1], 
-                        stdPlane, ret);
-                    if (pfg2.path.length > xMax + yMax - 2 && pfg3.path.length > xMax + yMax - 2) {
+                    if (pfg2.path.length > 5) {
                         ret.tiles[SortedCells[rng3].cell.y * 2 + 1][SortedCells[rng3].cell.x * 2 + 1].build({ "groundId": floorId, "itemId": '_b1_25_gervais_0911' });
                         break;
                     }
                 } while (maxLoops2-- > 0);          
             }
             ret.tiles[SortedCells[rng2].cell.y * 2 + 1][SortedCells[rng2].cell.x * 2 + 1].build({ "groundId": floorId, "propId": '_b1_11_rock_stairs_down' });
+            let maxLoops3 = xMax + 1;
+            do {
+                const rng4 = Math.floor(Math.random() * (cellGroup - 1));
+                if (rng4 === rng3) continue;
+                let trapIsInPath = false;
+                pfg.path.forEach(function (tile) {
+                    if (tile.x === SortedCells[rng4].cell.x * 2 + 1 && tile.y === SortedCells[rng4].cell.y * 2 + 1) {
+                        trapIsInPath = true;
+                    }
+                });
+                if (trapIsInPath) continue;
+                ret.tiles[SortedCells[rng4].cell.y * 2 + 1][SortedCells[rng4].cell.x * 2 + 1].build({ "groundId": floorId, "propId": '_b1_03_bear_trap.rl1' });
+            } while (maxLoops3-- > 0);
             break;
         }
     } while (maxLoops1-- > 0);
