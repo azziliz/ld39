@@ -266,3 +266,7 @@ div.collapsiblepanel {
     90% { opacity:0; }
     100% { opacity:0; }
 }
+
+.skipTutoButton {
+    float: right;
+}

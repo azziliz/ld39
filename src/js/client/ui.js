@@ -3,7 +3,7 @@
 murmures.UiBuilder = function () {
     // #region templates
     this.template = {
-        logHeader : '<header> \
+        logHeader : '<header><button id="skipTuto" class="skipTutoButton">Skip tutorial</button> \
 <h3 id="h1Txt"></h3> \
 <div id="h3Txt"></div> \
 </header>', 
@@ -116,6 +116,16 @@ murmures.UiBuilder.prototype = {
     
     drawFullLogHeader : function () {
         document.body.appendChild(this.createElementFromTemplate(this.template.logHeader));
+
+        document.getElementById('skipTuto').addEventListener('mouseup', function (e) {
+            e.preventDefault();
+            const exit = gameEngine.level.getExit();
+            gameEngine.heros[0].move(exit.x, exit.y);
+            gameEngine.activeLevel = 8;
+            gameEngine.heros[0].powerCharge = 11;
+            gameEngine.client.eventDispatcher.emitEvent('moveHero', { x: 0, y: 0 });
+        }, false);
+
         document.body.appendChild(this.createElementFromTemplate(this.template.debugDiv));
         window.addEventListener('tileEnter', function (e) {
             let hoveredTile = e.detail;
@@ -261,6 +271,9 @@ murmures.UiBuilder.prototype = {
         
         document.getElementById('h1Txt').innerHTML = gameEngine.level.h1;
         document.getElementById('h3Txt').innerHTML = gameEngine.level.h2;
+        if (gameEngine.activeLevel > 8) {
+            document.getElementById('skipTuto').style.display = "none";
+        }
         
         document.getElementById('leftCharacters').innerHTML = '';
         if (gameEngine.level.hasHP) {
