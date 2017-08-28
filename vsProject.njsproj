@@ -33,6 +33,8 @@
     <Compile Include="src\js\core\constants.js" />
     <Compile Include="src\js\core\gameengine.js" />
     <Compile Include="src\js\core\level.js" />
+    <Compile Include="src\js\core\pathfinding.js" />
+    <Compile Include="src\js\core\room.js" />
     <Compile Include="src\js\core\tile.js" />
     <Compile Include="src\js\core\utils.js" />
     <Compile Include="src\js\pages\ld39.js" />

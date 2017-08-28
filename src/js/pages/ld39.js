@@ -89,7 +89,7 @@ window.onload = function () {
                     gameEngine.client.eventDispatcher.emitEvent('requestRenderFullEngine');
                 } else {
                     gameEngine.client.eventDispatcher.emitEvent('requestRefreshCrawlUi');
-                    gameEngine.client.eventDispatcher.emitEvent('requestRenderPartialEngine');
+                    gameEngine.client.eventDispatcher.emitEvent('requestRenderFullEngine');
                 }
             }
         }
