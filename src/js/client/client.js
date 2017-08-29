@@ -224,7 +224,7 @@ var GenerateMaze = function (xMax, yMax) {
             ret.tiles[SortedCells[rng1].cell.y * 2 + 1][SortedCells[rng1].cell.x * 2 + 1].build({ "groundId": floorId, "propId": '_b1_11_rock_stairs_up' });
             ret.tiles[SortedCells[rng2].cell.y * 2 + 1][SortedCells[rng2].cell.x * 2 + 1].build({ "groundId": wallId }); // teporarily build a wall on rng2 because we don't want powerups AFTER the exit
             let rng3 = rng1;
-            if (gameEngine.activeLevel % 3 === 0) {
+            if (gameEngine.activeLevel % 3 === 0 || gameEngine.activeLevel > 20) {
                 let maxLoops2 = 30;
                 do {
                     rng3 = Math.floor(Math.random() * (cellGroup - 1));
@@ -241,13 +241,25 @@ var GenerateMaze = function (xMax, yMax) {
                         ret.tiles[SortedCells[rng3].cell.y * 2 + 1][SortedCells[rng3].cell.x * 2 + 1], 
                         stdPlane, ret);
                     if (pfg2.path.length > 5) {
-                        ret.tiles[SortedCells[rng3].cell.y * 2 + 1][SortedCells[rng3].cell.x * 2 + 1].build({ "groundId": floorId, "itemId": '_b1_25_gervais_0911' });
+                        const pups = ['_b1_25_blue.rl1',
+                            '_b1_25_gervais_0680',
+                            '_b1_25_gervais_0910',
+                            '_b1_25_gervais_0911',
+                            '_b1_25_gervais_0912',
+                            '_b1_25_gervais_0913',
+                            '_b1_25_green.rl1',
+                            '_b1_25_red.conv',
+                            '_b1_25_violet.conv',
+                            '_b1_25_yellow.conv'
+                        ];
+                        const pupId = pups[Math.floor(Math.random() * pups.length)];;
+                        ret.tiles[SortedCells[rng3].cell.y * 2 + 1][SortedCells[rng3].cell.x * 2 + 1].build({ "groundId": floorId, "itemId": pupId });
                         break;
                     }
                 } while (maxLoops2-- > 0);          
             }
             ret.tiles[SortedCells[rng2].cell.y * 2 + 1][SortedCells[rng2].cell.x * 2 + 1].build({ "groundId": floorId, "propId": '_b1_11_rock_stairs_down' });
-            let maxLoops3 = xMax + 1;
+            let maxLoops3 = xMax + 1 + Math.floor(gameEngine.activeLevel / 6);
             do {
                 const rng4 = Math.floor(Math.random() * (cellGroup - 1));
                 if (rng4 === rng3) continue;
@@ -258,7 +270,16 @@ var GenerateMaze = function (xMax, yMax) {
                     }
                 });
                 if (trapIsInPath) continue;
-                ret.tiles[SortedCells[rng4].cell.y * 2 + 1][SortedCells[rng4].cell.x * 2 + 1].build({ "groundId": floorId, "propId": '_b1_03_bear_trap.rl1' });
+                const traps = ['_b1_03_bear_trap.rl1',
+                    '_b1_03_spear',
+                    '_b1_03_dngn_trap_axe',
+                    '_b1_03_bolt',
+                    '_b1_03_fire_trap.rl1',
+                    '_b1_04_zot'
+                ];
+                const trapId = traps[Math.floor(Math.random() * traps.length)];;
+
+                ret.tiles[SortedCells[rng4].cell.y * 2 + 1][SortedCells[rng4].cell.x * 2 + 1].build({ "groundId": floorId, "propId": trapId });
             } while (maxLoops3-- > 0);
             break;
         }

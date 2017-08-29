@@ -1,7 +1,7 @@
 ﻿murmures.staticLevels.level2 = {
     "id": "ld39.2",
     "h1": "Level 2",
-    "h2": "- Hit a wall, you won't move<br>- Step on a trap, fall in lava or drown in deep water, you lose 1 HP",
+    "h2": "- Hit a wall, you won't move<br>- Step on a trap, you lose 1 HP",
     "hasHP": true,
     "power": 0,
     "layout": "square",
@@ -71,11 +71,17 @@
             { "groundId": "_b1_01_ice0" },
             { "groundId": "_b1_01_ice0" },
             { "groundId": "_b1_01_ice0" },
-            { "groundId": "_b1_01_lava0" },
+            {
+                "groundId": "_b1_01_ice0",
+                "propId": "_b1_03_fire_trap.rl1"
+            },
             { "groundId": "_b1_01_ice0" },
             { "groundId": "_b1_01_ice0" },
             { "groundId": "_b1_01_ice0" },
-            { "groundId": "_b1_01_shoals_deep_water3" },
+            {
+                "groundId": "_b1_01_ice0",
+                "propId": "_b1_03_dngn_trap_axe"
+            },
             { "groundId": "_b1_01_ice0" },
             { "groundId": "_b1_01_ice0" },
             { "groundId": "_b1_01_ice0" },
