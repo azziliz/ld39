@@ -3,7 +3,9 @@
 murmures.UiBuilder = function () {
     // #region templates
     this.template = {
-        logHeader : '<header><button id="skipTuto" class="skipTutoButton">Skip tutorial</button> \
+        logHeader : '<header> \
+<div id="deathOverlay" class="deathOverlay" style="display:none"><div id="deathScreen" class="deathScreen"><br/><br/><br/><h1>Game over</h1><button id="startAgain" class="startAgainButton">Restart</button></div></div> \
+<button id="skipTuto" class="skipTutoButton">Skip tutorial</button> \
 <h3 id="h1Txt"></h3> \
 <div id="h3Txt"></div> \
 </header>', 

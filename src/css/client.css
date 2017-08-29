@@ -270,3 +270,31 @@ div.collapsiblepanel {
 .skipTutoButton {
     float: right;
 }
+
+.deathOverlay {
+    width:100vw;
+    height:100vh;
+    background-color: #000;
+    position:fixed;
+    z-index:999999;
+}
+
+.deathScreen {
+    top: 50%;
+    left: 50%;
+    width:30em;
+    height:18em;
+    margin-top: -9em;
+    margin-left: -15em;
+    border: 1px solid #ccc;
+    background-color: #522;
+    position:fixed;
+    text-align: center;
+}
+
+.startAgainButton {
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+    display: none;
+}

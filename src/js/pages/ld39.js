@@ -49,6 +49,9 @@ window.onload = function () {
                     // trap HP - 1
                     gameEngine.heros[0].hitPoints--;
                 }
+                if (gameEngine.heros[0].hitPoints <= 0) {
+                    document.getElementById('deathOverlay').style.display = "block";
+                }
             }
             //TODO : death
             const exit = gameEngine.level.getExit();
